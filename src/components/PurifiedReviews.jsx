@@ -9,10 +9,17 @@ export const PurifiedReviews = () => {
       {reviews.map((review, i) => {
         const title = trustedTypePolicy.createHTML(review.title);
         const text = trustedTypePolicy.createHTML(review.text);
+        console.log(title);
         return (
           <div className="review" key={i}>
-            <h4 dangerouslySetInnerHTML={{ __html: title }}></h4>
-            <p dangerouslySetInnerHTML={{ __html: text }}></p>
+            <h4
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(review.title, {
+                  RETURN_TRUSTED_TYPE: true,
+                }),
+              }}
+            ></h4>
+            {<p dangerouslySetInnerHTML={{ __html: text }}></p>}
           </div>
         );
       })}
