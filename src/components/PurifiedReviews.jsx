@@ -9,7 +9,7 @@ export const PurifiedReviews = () => {
       {reviews.map((review, i) => {
         const title = trustedTypePolicy.createHTML(review.title);
         const text = trustedTypePolicy.createHTML(review.text);
-        console.log(title);
+        console.log(text);
         return (
           <div className="review" key={i}>
             <h4
