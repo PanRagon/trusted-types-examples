@@ -9,7 +9,6 @@ export const PurifiedReviews = () => {
       {reviews.map((review, i) => {
         const title = dompurifyTrustedType(review.title);
         const text = dompurifyTrustedType(review.text);
-        console.log(trustedTypes);
         return (
           <div className="review" key={i}>
             <h4 dangerouslySetInnerHTML={{ __html: title }}></h4>

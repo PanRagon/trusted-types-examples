@@ -5,6 +5,6 @@ export const reviews = [
   },
   {
     title: 'Kitchen nightmares',
-    text: `Fine location, lots of parking. But those are the <strong>only</strong> good things.<img src="none" onerror="alert('running malicious code')">`,
+    text: `Fine location, lots of parking. But those are the <strong>only</strong> good things.<img src="none" onerror="alert('Running malicious code!')">`,
   },
 ];
