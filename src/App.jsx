@@ -7,30 +7,38 @@ import DocumentMeta from 'react-document-meta';
 
 function App() {
   const [reviewType, setReviewType] = useState('textual');
+  const [enableTT, setEnableTT] = useState(false);
 
   const meta = {
     meta: {
       'http-equiv': {
         'Content-Security-Policy':
-          "require-trusted-types-for 'script'; trusted-types 'dompurify'",
+          "require-trusted-types-for 'script'; trusted-types dompurify",
       },
     },
   };
 
-  const onChangeRadio = (e) => {
+  const onChangeReviewType = (e) => {
     const { value = 'textual' } = e.target;
-    console.log(value);
     setReviewType(value);
   };
+
+  const onChangeTT = (e) => {
+    let { value = 'false' } = e.target;
+    let boolValue = false;
+    if (value.toLowerCase() === 'true') {
+      boolValue = true;
+    }
+    setEnableTT(boolValue);
+  };
   return (
-    <DocumentMeta {...meta}>
+    <DocumentMeta meta={enableTT ? meta.meta : ''}>
       <div className="App">
         <header className="App-header">
           <h1>Welcome to my review site!</h1>
-          <h2>Please select a review type:</h2>
-          <div onChange={onChangeRadio} className="review-type-selector">
+          <p>Select a review type:</p>
+          <div onChange={onChangeReviewType} className="review-type-selector">
             <input
-              onClick={() => setReviewType('textual')}
               type="radio"
               id="textual"
               value="textual"
@@ -40,7 +48,6 @@ function App() {
             <label for="textual">Rendered as text</label>
 
             <input
-              onClick={() => setReviewType('textual')}
               type="radio"
               id="innerhtml"
               value="innerhtml"
@@ -49,7 +56,6 @@ function App() {
             />
             <label for="innerhtml">Rendered as HTML</label>
             <input
-              onClick={() => setReviewType('textual')}
               type="radio"
               id="purified"
               value="purified"
@@ -57,6 +63,26 @@ function App() {
               checked={reviewType === 'purified'}
             />
             <label for="purified">Purified and rendered as HTML</label>
+          </div>
+
+          <p>Enable or disable Trusted Types:</p>
+          <div onChange={onChangeTT} className="review-type-selector">
+            <input
+              type="radio"
+              id="disableTT"
+              value={false}
+              name="enable_tt"
+              checked={!enableTT}
+            />
+            <label for="disableTT">Disable Trusted Types</label>
+            <input
+              type="radio"
+              id="enableTT"
+              value={true}
+              name="enable_tt"
+              checked={enableTT}
+            />
+            <label for="enableTT">Enable Trusted Types</label>
           </div>
         </header>
         {reviewType === 'textual' ? (
