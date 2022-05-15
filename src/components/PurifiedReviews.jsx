@@ -1,6 +1,4 @@
 import { reviews } from '../db/reviews';
-import DOMPurify from 'dompurify';
-import { trustedTypePolicy } from '../helpers/trustedTypePolicy';
 import { trustedTypes } from 'trusted-types';
 import { dompurifyTrustedType } from '../helpers/dompurifyTrustedType';
 
@@ -14,12 +12,8 @@ export const PurifiedReviews = () => {
         console.log(trustedTypes);
         return (
           <div className="review" key={i}>
-            <h4
-              dangerouslySetInnerHTML={{
-                __html: title,
-              }}
-            ></h4>
-            {<p dangerouslySetInnerHTML={{ __html: text }}></p>}
+            <h4 dangerouslySetInnerHTML={{ __html: title }}></h4>
+            <p dangerouslySetInnerHTML={{ __html: text }}></p>
           </div>
         );
       })}

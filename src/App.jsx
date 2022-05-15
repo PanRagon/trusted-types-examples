@@ -12,8 +12,7 @@ function App() {
   const meta = {
     meta: {
       'http-equiv': {
-        'Content-Security-Policy':
-          "require-trusted-types-for 'script'; trusted-types dompurify",
+        'Content-Security-Policy': "require-trusted-types-for 'script'",
       },
     },
   };
