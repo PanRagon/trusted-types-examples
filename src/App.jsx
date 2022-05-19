@@ -9,7 +9,7 @@ function App() {
   const [reviewType, setReviewType] = useState('textual');
   const [enableTT, setEnableTT] = useState(false);
 
-  const meta = {
+  const conf = {
     meta: {
       'http-equiv': {
         'Content-Security-Policy': "require-trusted-types-for 'script'",
@@ -31,7 +31,7 @@ function App() {
     setEnableTT(boolValue);
   };
   return (
-    <DocumentMeta meta={enableTT ? meta.meta : ''}>
+    <DocumentMeta meta={enableTT ? conf.meta : ''}>
       <div className="App">
         <header className="App-header">
           <h1>Welcome to my review site!</h1>
